@@ -27,7 +27,7 @@
 		"solo/validator": "dev-master"
 	},
 	
-	"minimum-stability": "dev"
+	"minimum-stability": "dev",
 
 
 	"autoload": {
