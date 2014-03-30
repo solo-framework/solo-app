@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Project" default="release">
+
+	<property name="mysql-host" value="localhost"/>
+	<property name="mysql-user" value="root"/>
+	<property name="mysql-password" value="root"/>
+	<property name="mysql-db" value="box"/>
+
+
+	<property name="buildDir" value="../build"/>
+	<property name="projectDir" value="./"/>
+
+	<!--
+	Задача сборки в релиз
+	-->
+	<target name="release">
+
+		<!-- удалить каталог сборки  -->
+		<phingcall target="removeOldRelease"/>
+
+		<echo msg="Copying files to build directory..."/>
+		<copy todir="${buildDir}">
+			<fileset dir="${projectDir}">
+				<patternset>
+
+					<exclude name="**/.gitkeep"/>
+					<exclude name="**/local.php"/>
+					<exclude name="vendor/**"/>
+					<exclude name="var/cache/*.*"/>
+					<exclude name="var/compile/*.*"/>
+					<exclude name="var/logs/*.*"/>
+					<exclude name="var/logs/api/*.*"/>
+					<exclude name="var/tmp/*.*"/>
+
+				</patternset>
+			</fileset>
+		</copy>
+
+		<!-- Замена настроек в файлах .htaccess -->
+		<phingcall target="replace-in-htaccess"/>
+
+		<!-- установить ревизию для скриптов -->
+		<phingcall target="replace-script-revision"/>
+
+		<!-- Заменить настройки доступа к MySQL в файле настроек DbMigrator -->
+		<phingcall target="generate-dbmigrator-settings"/>
+
+		<tstamp>
+			<format property="DATE" pattern="%Y-%m-%d_%H-%M-%S"/>
+		</tstamp>
+
+		<!-- упаковать все файлы в архив -->
+		<zip destfile="${projectDir}/../release-${DATE}.zip">
+			<fileset dir="${buildDir}">
+				<include name="**/**"/>
+			</fileset>
+		</zip>
+
+		<!-- удалить каталог сборки  -->
+		<phingcall target="removeOldRelease"/>
+	</target>
+
+
+	<!--
+	Замена настроек в файлах .htaccess
+	-->
+	<target name="replace-in-htaccess">
+
+		<echo>Parse .htaccess files</echo>
+		<reflexive>
+			<fileset dir="${buildDir}">
+				<include name="**/.htaccess"/>
+			</fileset>
+			<filterchain>
+				<replaceregexp>
+					<regexp pattern="local.php" replace="common.php"/>
+					<regexp pattern="(php_value[\s]+display_errors[\s]+)(on)" replace="\1off"/>
+				</replaceregexp>
+			</filterchain>
+		</reflexive>
+
+	</target>
+
+	<!--
+	Замена настроек в файлах .htaccess
+	-->
+	<target name="replace-script-revision">
+
+		<echo>Set revision for scripts</echo>
+
+		<tstamp>
+			<format property="SCRIPT_REVISION" pattern="%s"/>
+		</tstamp>
+
+		<reflexive>
+			<fileset dir="${buildDir}">
+				<include name="**/common.php"/>
+			</fileset>
+			<filterchain>
+				<replaceregexp>
+					<regexp pattern="%CLIENT_SCRIPT_REVISION%" replace="${SCRIPT_REVISION}"/>
+				</replaceregexp>
+			</filterchain>
+		</reflexive>
+
+	</target>
+
+	<target name="generate-dbmigrator-settings">
+		<echo>Generate settings for dbmigrator</echo>
+
+		<reflexive>
+			<fileset dir="${buildDir}">
+				<include name="**/boxdb.ini"/>
+			</fileset>
+			<filterchain>
+				<replaceregexp>
+					<regexp pattern="(user[\s]+=[\s]+)(.*)" replace='\1"${mysql-user}"'/>
+					<regexp pattern="(pass[\s]+=[\s]+)(.*)" replace='\1"${mysql-password}"'/>
+					<regexp pattern="(host[\s]+=[\s]+)(.*)" replace='\1"${mysql-host}"'/>
+					<regexp pattern="(dbname[\s]+=[\s]+)(.*)" replace='\1"${mysql-db}"'/>
+				</replaceregexp>
+			</filterchain>
+		</reflexive>
+	</target>
+
+	<!--
+	Удаление старой сборки
+	-->
+	<target name="removeOldRelease">
+		<echo msg="Removing release directory"/>
+		<delete dir="${buildDir}" includeemptydirs="true" failonerror="false"/>
+	</target>
+
+</project>

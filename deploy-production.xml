@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Project" default="deploy">
+
+	<!--
+		Скрипт для развертывания приложения на test или production сервере
+	-->
+
+	<!-- Текущий каталог -->
+	<property name="project" value="${application.startdir}"/>
+
+	<target name="deploy">
+		<echo>${project}</echo>
+
+		<!-- настройка crontab -->
+		<!--<phingcall target="prepare-crontab"/>-->
+
+		<!-- Установка разрешений на каталоги -->
+		<phingcall target="set-permissions"/>
+
+		<!-- Запуск Composer -->
+		<phingcall target="composer-update"/>
+
+	</target>
+
+	<!--
+		Замена путей в crontab и импорт настроек
+	-->
+	<!--<target name="prepare-crontab">-->
+
+		<!--<echo>Copying the crontab file</echo>-->
+		<!--<copy file="${project}/cron/crontab" tofile="${project}/cron/crontab_copy" overwrite="true"></copy>-->
+
+		<!--<echo>Replacing the crontab file</echo>-->
+		<!--<reflexive file="${project}/cron/crontab_copy">-->
+			<!--<filterchain>-->
+				<!--<replaceregexp>-->
+					<!--<regexp pattern="{ABS_PATH_TO_CRON_DIRECTORY}" replace="${project}"></regexp>-->
+				<!--</replaceregexp>-->
+			<!--</filterchain>-->
+		<!--</reflexive>-->
+
+		<!--<echo>Import crontab settings</echo>-->
+		<!--<exec command="crontab ${project}/cron/crontab_copy"></exec>-->
+		<!--<delete file="${project}/cron/crontab_copy"></delete>-->
+	<!--</target>-->
+
+	<target name="set-permissions">
+		<echo>Set permissions fot var/*</echo>
+
+		<exec command="chmod -R 777 *" dir="./var/"></exec>
+	</target>
+
+	<target name="composer-update">
+		<!--<exec command="ssh -Tv git@github.com" passthru="true"></exec>-->
+		<!--<exec command="eval '$(ssh-agent)'" passthru="true"></exec>-->
+		<exec command="composer update" dir="./" passthru="true"></exec>
+	</target>
+
+</project>

@@ -1,0 +1,10 @@
+./.idea
+var/tmp/*.*
+var/cache/*.*
+var/compile/*.*
+var/logs/*.*
+vendor/
+
+!.gitkeep
+
+/.idea
