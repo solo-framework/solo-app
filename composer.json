@@ -26,6 +26,8 @@
 		"solo/formrestore": "dev-master",
 		"solo/validator": "dev-master"
 	},
+	
+	"minimum-stability": "dev"
 
 
 	"autoload": {
