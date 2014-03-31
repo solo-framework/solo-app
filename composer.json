@@ -19,14 +19,15 @@
         }
     ],
 
+	"minimum-stability": "dev",
 	"prefer-stable": true,
 
 	"require": {
 		"php": ">=5.3.0",
 		"smarty/smarty": "3.1.14",
-		"solo/framework": ">=1.0.0@dev",
-		"solo/formrestore": ">=1.0.0@dev",
-		"solo/validator": ">=1.0.0@dev"
+		"solo/framework": "dev-master@dev",
+		"solo/formrestore": "dev-master@dev",
+		"solo/validator": "dev-master@dev"
 	},
 
 	"autoload": {
