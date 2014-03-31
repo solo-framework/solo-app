@@ -128,7 +128,7 @@ return array
 			// Старт сессии
 			"Solo\\Core\\Handler\\SessionHandler" => array(
 				"providerClass" => "Solo\\Core\\Web\\Session\\FileSessionProvider",
-				"sessionName" => "citycard"
+				"sessionName" => "your_session_id"
 			),
 		)
 	),

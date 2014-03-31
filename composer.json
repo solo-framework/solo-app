@@ -25,9 +25,9 @@
 	"require": {
 		"php": ">=5.3.0",
 		"smarty/smarty": "3.1.14",
-		"solo/framework": "dev-master@dev",
-		"solo/formrestore": "dev-master@dev",
-		"solo/validator": "dev-master@dev"
+		"solo/framework": ">=1",
+		"solo/formrestore": ">=1",
+		"solo/validator": ">=1"
 	},
 
 	"autoload": {
