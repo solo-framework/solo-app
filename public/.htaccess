@@ -18,11 +18,14 @@ php_value upload_max_filesize 40M
 # Установка кодировки по умолчанию
 AddDefaultCharset utf-8
 
+# Установка временной зоны
+php_value "date.timezone" "Europe/Moscow"
+
 # Запрет просмотра каталогов по урлу
 Options -Indexes
 
 # путь к файлу конфигурации
-SetEnv configFile "/../config/common.php"
+SetEnv configFile "/../config/local.php"
 
 # Настройка mod_rewrite
 <IfModule mod_rewrite.c>
