@@ -10,7 +10,7 @@
 
 namespace App\View;
 
-use Solo\Core\View;
+use Solo\Core\UI\Smarty\View;
 
 class Error404View extends View
 {
