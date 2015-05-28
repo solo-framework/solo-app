@@ -1,4 +1,6 @@
 <?php
+use Solo\Logger\Level;
+
 return array
 (
 	//
@@ -96,6 +98,44 @@ return array
 			// Настройки драйвера
 			"driverOptions" => array()
 		),
+
+		"logger" => array
+		(
+			"@class" => "Solo\\Logger\\Adapter",
+			"settings" => array(
+
+				"loggers" => [
+
+					// для уровня приложения
+					"default" => [
+						"writers" => ["file"],
+						"format" => "{date-time} {log-name} [{log-level}]: {log-message}\n\n"
+					],
+
+					// общий лог
+					"core" => [
+						"writers" => ["file-core"]
+					]
+				],
+
+				"writers" => [
+					"file-core" => [
+						"level" => Level::DEBUG,
+						"class" => "Solo\\Logger\\Writers\\FileWriter",
+						"options" => [
+							"output" => BASE_DIRECTORY . "/var/logs/core-{log-level}-" . date("d-m-y") . ".txt"
+						]
+					],
+					"file" => [
+						"level" => Level::DEBUG,
+						"class" => "Solo\\Logger\\Writers\\FileWriter",
+						"options" => [
+							"output" => BASE_DIRECTORY . "/var/logs/app-{log-level}-" . date("d.m.y_H-i-s") . ".txt"
+						]
+					]
+				]
+			)
+		)
 	),
 
 	//
@@ -132,13 +172,4 @@ return array
 			),
 		)
 	),
-
-	//
-	// Настройки логирования
-	//
-	"logger" => array
-	(
-		"logger.dir" => BASE_DIRECTORY . "/var/logs"
-	)
 );
-?>
