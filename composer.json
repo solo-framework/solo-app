@@ -25,7 +25,7 @@
 	"require": {
 		"php": ">=5.3.0",
 		"smarty/smarty": "3.1.14",
-		"solo/framework": ">=1",
+		"solo/framework": "dev-master",
 		"solo/formrestore": ">=1",
 		"solo/validator": ">=1"
 	},
