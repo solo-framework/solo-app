@@ -1,0 +1,11 @@
+# конфигурационный файл Meme-проекта
+deploy-dev:
+
+    name: Deploy appplication for development
+
+    # например, подключение к MySQL
+    database:
+        username: root
+        password: password
+        isDebug: true
+        dsn: mysql:host=localhost;dbname=dbname
