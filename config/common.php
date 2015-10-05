@@ -71,6 +71,7 @@ return array
 					"Solo\\Core\\UI\\Smarty\\Plugins\\Link",
 					"Solo\\Core\\UI\\Smarty\\Plugins\\Component",
 					"Solo\\Web\\FormRestore\\Smarty\\FormRestore",
+					"Solo\\Web\\Assets\\Smarty\\Assets"
 				)
 			)
 
@@ -135,7 +136,17 @@ return array
 					]
 				]
 			)
-		)
+		),
+
+		"solo_assets" => array
+		(
+			"@class" => "Solo\\Web\\Assets\\SoloAdapter",
+			"ttl"    => 86400,
+			"debug"  => true,
+			"async"  => false,
+			"outdir" => "/assets"
+		),
+
 	),
 
 	//
@@ -168,7 +179,8 @@ return array
 			// Старт сессии
 			"Solo\\Core\\Handler\\SessionHandler" => array(
 				"providerClass" => "Solo\\Core\\Web\\Session\\FileSessionProvider",
-				"sessionName" => "your_session_id"
+				"sessionName" => "your_session_id",
+				"options" => null
 			),
 		)
 	),

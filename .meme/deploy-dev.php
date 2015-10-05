@@ -23,7 +23,7 @@ $project->setStartTarget("start");
 $startTarget = new Target("start", function(){
 
 	Output::comment("Updating composer");
-//	(new Command("composer update"))->setTimeout(600)->run();
+	(new Command("composer update"))->setTimeout(600)->run();
 
 	Output::comment("Changing permissions for folders");
 	$dirs = array(

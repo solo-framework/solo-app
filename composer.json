@@ -27,7 +27,8 @@
 		"smarty/smarty": "3.1.14",
 		"solo/framework": "dev-master",
 		"solo/formrestore": ">=1",
-		"solo/validator": ">=1"
+		"solo/validator": ">=1",
+		"solo/assets": "dev-master"
 	},
 
 	"autoload": {

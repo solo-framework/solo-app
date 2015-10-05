@@ -22,4 +22,3 @@ $config = dirname(__FILE__) . $configFile;
 
 Application::createApplication($basePath, $config);
 Application::getInstance()->handleRequest();
-

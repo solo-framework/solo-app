@@ -10,5 +10,18 @@
 return array
 (
 	// директива указывает на файл с общими настройками приложения.
-	"@extends" => BASE_DIRECTORY . "/config/common.php"
+	"@extends" => BASE_DIRECTORY . "/config/common.php",
+
+	"components" => [
+
+		// настройки компиляции javascript и CSS файлов
+		"solo_assets" => array
+		(
+			"@class" => "Solo\\Web\\Assets\\SoloAdapter",
+			"ttl"    => 0,
+			"debug"  => true,
+			"async"  => false,
+			"outdir" => "/assets"
+		),
+	]
 );
