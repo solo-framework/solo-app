@@ -4,5 +4,7 @@ var/cache/*.*
 var/compile/*.*
 var/logs/*.*
 vendor/
+public/assets
+config/local.php
 
 !.gitkeep
