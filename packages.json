@@ -1,0 +1,11 @@
+{
+	"package": {
+		"name": "solo/app8",
+		"version": "1.0.0",
+		"source": {
+			"url": "/home/afi/work/projects/solo-app/.git",
+			"type": "git",
+			"reference": "php8"
+		}
+	}
+}

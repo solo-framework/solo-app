@@ -1,5 +1,5 @@
 {
-    "name": "solo/app",
+    "name": "solo/app8",
 	"type": "application",
 	"description": "The skeleton for Solo Framework applications",
 	"keywords": [ "application","solo framework" ],
@@ -18,8 +18,8 @@
 	"prefer-stable": true,
 
 	"require": {
-		"php": ">=5.3.0",
-		"smarty/smarty": "3.1.43",
+		"php": ">=8.0",
+		"smarty/smarty": "~4.0",
 		"solo/framework": "dev-master",
 		"solo/formrestore": ">=1",
 		"solo/validator": ">=1",
@@ -27,8 +27,8 @@
 	},
 
 	"autoload": {
-		"psr-0": {
-			"App": "src/apps/"
+		"psr-4": {
+			"App\\" : "src/apps"
 		}
 	}
 }
