@@ -20,7 +20,7 @@
 	"require": {
 		"php": ">=8.0",
 		"smarty/smarty": "~4.0",
-		"solo/framework": "dev-master",
+		"solo/framework": "~8.0",
 		"solo/formrestore": ">=1",
 		"solo/validator": ">=1",
 		"solo/assets": "dev-master"
