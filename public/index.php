@@ -14,9 +14,10 @@ use App\Application;
 require_once "../vendor/autoload.php";
 
 $basePath = "../";
-$configFile = getenv("configFile");
+$configFile = getenv("APP_BACKEND_CONFIG_FILE");
+
 if (!$configFile)
-	exit("You have to define 'SetEnv configFile path-to-config-file' in your .htaccess");
+	exit("You need to define environment variable 'APP_BACKEND_CONFIG_FILE' with path to a config file");
 
 $config = dirname(__FILE__) . $configFile;
 

@@ -19,7 +19,7 @@ class IndexView extends BaseView
 	 *
 	 * @var string
 	 */
-	public $layout = "index.html";
+	public ?string $layout = "index.html";
 
 	/**
 	 * Публичное свойство представления, оно
@@ -27,7 +27,7 @@ class IndexView extends BaseView
 	 *
 	 * @var string
 	 */
-	public $myVar = null;
+	public ?string $myVar = null;
 
 	/**
 	 * Публичное свойство представления, оно
@@ -35,16 +35,17 @@ class IndexView extends BaseView
 	 *
 	 * @var string
 	 */
-	public $title = "";
+	public string $title = "";
 
 
 	/**
-	 * Приватное свойство представления, оно
-	 * НЕ будет видно в шаблоне
+	 * Приватное свойство представления, при использовании его в шаблоне
+	 * будет сгенерирована ощибка типа Undefined array key "privateVar"
 	 *
-	 * @var string
+	 *
+	 * @var string|null
 	 */
-	private $privateVar = null;
+	private ?string $privateVar = null;
 
 
 	/**

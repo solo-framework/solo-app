@@ -7,21 +7,19 @@
  * Если вы хотите добавить опцию, которая должна быть у всех, то используйте файл config/common.php
  */
 
-return array
-(
+return [
 	// директива указывает на файл с общими настройками приложения.
 	"@extends" => BASE_DIRECTORY . "/config/common.php",
 
 	"components" => [
 
 		// настройки компиляции javascript и CSS файлов
-		"solo_assets" => array
-		(
+		"solo_assets" => [
 			"@class" => "Solo\\Web\\Assets\\SoloAdapter",
 			"ttl"    => 0,
 			"debug"  => true,
 			"async"  => false,
 			"outdir" => "/assets"
-		),
+		],
 	]
-);
+];
